@@ -8,6 +8,7 @@ import { useState } from 'react';
 //   setAssignmentInput: Function
 // }
 
+
 export function Header() {
 
 const [assignmentInput, setAssignmentInput] = useState("") // This sets the state and enables React watching this item
