@@ -1,7 +1,18 @@
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
 
-export function Assignments() {
+interface Props {
+  assignmentDB:{
+    completed: boolean,
+    value: [] 
+  },
+  assignmentCount: number,
+  setAssignmentCount: Function
+};
+
+export function Assignments({assignmentDB, assignmentCount}: Props) {
+
+  console.log(assignmentDB, assignmentCount)
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
