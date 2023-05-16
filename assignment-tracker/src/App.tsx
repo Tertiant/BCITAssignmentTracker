@@ -1,40 +1,28 @@
 import { Header } from "./components/Header";
 import { Assignments } from "./components/Assignments";
 import { useState } from "react";
-
-// interface Props {
-//   assignmentDB:{
-//     completed: boolean,
-//     value: [] 
-//   },
-//   assignmentCount: number,
-//   setAssignmentCount: Function
-// };
-
-
 function App() {
 
-  let assignmentDB = [
+  const [assignments, setAssignments] = useState([
     {
-       completed: false,
-       value: ""
-       },
-   {
-       completed: false,
-       value: ""
-       },
-   {
-       completed: false,
-       value: ""
-       },
-  ];
+      value:"",
+      completed: false
+    },
+  ]);
 
-  const [assignmentCount, setAssignmentCount] = useState(3)
+  // have a callback function that runs onSubmit that passes data back to the App(), 
+  // which then updates the list and the assignmentCount to reflect changes. 
+  //Unsure how to implement this function.
 
   return (
     <>
-      <Header assignmentCount={assignmentCount}/>
-      <Assignments assignmentDB={assignmentDB} assignmentCount={assignmentCount}/>
+      <Header assignments={assignments} 
+              setAssignments={setAssignments}
+      />
+
+      <Assignments  assignments={assignments} 
+                    setAssignments={setAssignments}
+      />
     </>
   );
 }

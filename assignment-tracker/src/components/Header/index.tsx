@@ -4,19 +4,20 @@ import { uppercase } from "../../helpers/stringHelpers";
 import { useState } from 'react';
 
 interface Props {
-  assignmentDB:{
+  assignments: {
     completed: boolean,
-    value: [] 
-  },
-  assignmentCount: number,
-  setAssignmentCount: Function
+    value: string 
+  }[],
+  setAssignments: Function
 };
 
 const validateAssignmentInput = (formInput: string) => {
   return formInput.trim().length > 0 // returns true if the input exists and is not spaces
 };
 
-export function Header({assignmentCount}: Props) {
+export function Header({assignments, setAssignments}: Props) {
+  console.log(assignments, setAssignments)
+
 
   const [assignmentInput, setAssignmentInput] = useState("") // This sets the state and enables React watching this item
 

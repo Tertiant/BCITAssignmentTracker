@@ -2,17 +2,16 @@ import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
 
 interface Props {
-  assignmentDB:{
+  assignments: {
     completed: boolean,
-    value: [] 
-  },
-  assignmentCount: number,
-  setAssignmentCount: Function
+    value: string 
+  }[],
+  setAssignments: Function
 };
 
-export function Assignments({assignmentDB, assignmentCount}: Props) {
+export function Assignments({assignments, setAssignments}: Props) {
 
-  console.log(assignmentDB, assignmentCount)
+  console.log(assignments, setAssignments)
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
