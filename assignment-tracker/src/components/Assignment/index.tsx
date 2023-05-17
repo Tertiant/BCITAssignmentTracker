@@ -29,6 +29,7 @@ const toggleAssignment = () => (
               onClick={toggleAssignment}
       >
         <div>
+          <TbCircleCheckFilled size={20} display={assignment.completed ? "flex" : "none"}/>
         </div>
       </button>
 
