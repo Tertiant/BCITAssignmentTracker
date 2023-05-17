@@ -1,33 +1,38 @@
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
+import { IAssignment } from "../../interfaces/IAssignment";
+
 
 interface Props {
-  assignments: {
-    completed: boolean,
-    value: string 
-  }[],
-  setAssignments: Function
+  assignments: IAssignment[];
+  setAssignments: React.Dispatch<React.SetStateAction<IAssignment[]>>;
 };
 
 export function Assignments({assignments, setAssignments}: Props) {
 
-  console.log(assignments, setAssignments)
+  const completedAssignments = assignments.filter(assignment => assignment.completed === true).length;
+
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
         <div>
           <p>Created Assignments</p>
-          <span>1</span>
+          <span>{completedAssignments}</span>
         </div>
 
         <div>
           <p className={styles.textPurple}>Completed Assignments</p>
-          <span>1 of 1</span>
+          <span>{completedAssignments} of {assignments.length}</span>
         </div>
       </header>
 
       <div className={styles.list}>
-        <Assignment />
+        { assignments.map((assignment) => (
+          <Assignment 
+            assignment={assignment}
+            setAssignments={setAssignments} 
+          />
+        ))}
       </div>
     </section>
   );
