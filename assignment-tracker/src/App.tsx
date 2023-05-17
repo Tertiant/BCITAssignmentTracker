@@ -1,16 +1,11 @@
 import { Header } from "./components/Header";
 import { Assignments } from "./components/Assignments";
 import { useState } from "react";
+import { IAssignment } from "./interfaces/IAssignment";
 
 function App() {
 
-  const [assignments, setAssignments] = useState([
-    {
-      id: "test1",
-      name:"test",
-      completed: false
-    },
-  ]);
+  const [assignments, setAssignments] = useState<IAssignment[]>([]);
 
   return (
     <>
