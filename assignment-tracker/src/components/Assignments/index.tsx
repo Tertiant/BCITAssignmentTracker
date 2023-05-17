@@ -29,6 +29,7 @@ export function Assignments({assignments, setAssignments}: Props) {
       <div className={styles.list}>
         { assignments.map((assignment) => (
           <Assignment 
+            assignments={assignments}
             assignment={assignment}
             setAssignments={setAssignments} 
           />
