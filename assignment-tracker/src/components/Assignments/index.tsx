@@ -17,7 +17,7 @@ export function Assignments({assignments, setAssignments}: Props) {
       <header className={styles.header}>
         <div>
           <p>Created Assignments</p>
-          <span>{completedAssignments}</span>
+          <span>{assignments.length}</span>
         </div>
 
         <div>

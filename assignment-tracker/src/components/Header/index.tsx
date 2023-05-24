@@ -1,9 +1,13 @@
 import styles from "./header.module.css";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import 'react-day-picker/dist/style.css';
+
+import { AiOutlinePlusCircle, AiOutlineCalendar } from "react-icons/ai";
 import { uppercase } from "../../helpers/stringHelpers";
 import { useState } from 'react';
 import { IAssignment } from "../../interfaces/IAssignment";
 import {v4} from "uuid"; 
+import { format } from 'date-fns';
+import { DayPicker } from 'react-day-picker';
 
 interface Props {
   assignments: IAssignment[];
@@ -12,7 +16,11 @@ interface Props {
 
 export function Header({ assignments, setAssignments}: Props) {
 
-  const [assignmentInput, setAssignmentInput] = useState("") // This sets the state and enables React watching this item
+  const today = new Date();
+
+  const [dateInput, setDateInput] = useState(today); // watch which date is selected
+  const [showCalendar, setCalendarVisibility] = useState(false);
+  const [assignmentInput, setAssignmentInput] = useState(""); // This sets the state and enables React watching this item
 
   const validateAssignmentInput = (formInput: string) => {
     return formInput.trim().length > 0 // returns true if the input exists and is not spaces
@@ -29,12 +37,14 @@ export function Header({ assignments, setAssignments}: Props) {
         {
           id: v4(),
           completed: false,
-          name: assignmentInput
+          name: assignmentInput,
+          due: dateInput
         }
       ]);
     }
 
     setAssignmentInput("");
+    setDateInput(new Date());
   };
 
   return (
@@ -48,9 +58,22 @@ export function Header({ assignments, setAssignments}: Props) {
           type="text" 
           onChange={(e) => updateAssignmentInputState(e.target.value)}
         />
-        <button disabled={!validateAssignmentInput(assignmentInput)} type="submit">
+
+        {!showCalendar && <button disabled={!validateAssignmentInput(assignmentInput)}
+          onClick={() => setCalendarVisibility(!showCalendar)}>
+          Due Date <AiOutlineCalendar size={20} type="input"/>
+        </button>}
+
+        <DayPicker className={styles.DayPicker}
+          mode="single"
+          selected={dateInput}
+          onSelect={setDateInput}
+        />
+
+        <button disabled={!dateInput && !validateAssignmentInput(assignmentInput)} type="submit">
           Create <AiOutlinePlusCircle size={20} />
         </button>
+
       </form>
     </header>
   );
