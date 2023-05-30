@@ -16,8 +16,6 @@ interface Props {
 
 export function Header({ assignments, setAssignments}: Props) {
 
-  const today: Date = new Date();
-
   const [dateInput, setDateInput] = useState<Date | undefined>(); // watch which date is selected
   const [showCalendar, setCalendarVisibility] = useState(false);
   const [assignmentInput, setAssignmentInput] = useState(""); // This sets the state and enables React watching this item
