@@ -14,12 +14,33 @@
   font-size: 14px;
   line-height: 19px;
   color: #f2f2f2;
-  margin-right: auto;
+  /* margin-right: auto; */
 }
 
 p.textCompleted {
   color: #808080;
   text-decoration: line-through;
+}
+
+.dueDate {
+  margin-right: auto;
+  background: #496351;
+  padding: 6px 16px 4px 16px;
+  color: #fff;
+  border: none;
+  border-radius: 32px;
+  font-size: 14px;
+  margin-left: 16px;
+}
+
+.dueTomorrow {
+  color: #fff;
+  background: #876837;
+}
+
+.pastDue {
+  color: #ffffff;
+  background: #833737;
 }
 
 .checkContainer {

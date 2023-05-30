@@ -33,10 +33,23 @@
   color: #808080;
 }
 
-.newAssignmentForm button {
+/* .newAssignmentForm button {
   height: 100%;
   padding: 0 16px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 14px;
+} */
+
+.inputButton {
   background: #8284fa;
+  height: 100%;
+  padding: 0 16px;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -47,8 +60,30 @@
   font-size: 14px;
 }
 
-.newAssignmentForm button:disabled {
+.inputButton:disabled {
   background: #262626;
   color: rgb(137, 137, 137);
   cursor: not-allowed;
+}
+
+.DayPicker {
+  background: #262626;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 0px;
+}
+
+.CalendarDoneButton {
+  background: #8284fa;
+  height: 100%;
+  padding: 12px 16px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  margin: 6px;
 }

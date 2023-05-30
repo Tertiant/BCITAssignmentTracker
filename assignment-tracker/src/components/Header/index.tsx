@@ -1,5 +1,5 @@
-import styles from "./header.module.css";
 import 'react-day-picker/dist/style.css';
+import styles from "./header.module.css";
 
 import { AiOutlinePlusCircle, AiOutlineCalendar } from "react-icons/ai";
 import { uppercase } from "../../helpers/stringHelpers";
@@ -11,14 +11,14 @@ import { DayPicker } from 'react-day-picker';
 
 interface Props {
   assignments: IAssignment[];
-  setAssignments: React.Dispatch<React.SetStateAction<IAssignment[]>>;
+  setAssignments: Function;
 };
 
 export function Header({ assignments, setAssignments}: Props) {
 
-  const today = new Date();
+  const today: Date = new Date();
 
-  const [dateInput, setDateInput] = useState(today); // watch which date is selected
+  const [dateInput, setDateInput] = useState<Date | undefined>(); // watch which date is selected
   const [showCalendar, setCalendarVisibility] = useState(false);
   const [assignmentInput, setAssignmentInput] = useState(""); // This sets the state and enables React watching this item
 
@@ -44,8 +44,18 @@ export function Header({ assignments, setAssignments}: Props) {
     }
 
     setAssignmentInput("");
-    setDateInput(new Date());
+    setDateInput(undefined);
+    setCalendarVisibility(false);
   };
+
+  const footer = (
+    <button 
+      className={styles.CalendarDoneButton} 
+      onClick={() => setCalendarVisibility(!showCalendar)}
+    >
+      Done
+    </button>
+  )
 
   return (
     <header className={styles.header}>
@@ -59,18 +69,28 @@ export function Header({ assignments, setAssignments}: Props) {
           onChange={(e) => updateAssignmentInputState(e.target.value)}
         />
 
-        {!showCalendar && <button disabled={!validateAssignmentInput(assignmentInput)}
-          onClick={() => setCalendarVisibility(!showCalendar)}>
-          Due Date <AiOutlineCalendar size={20} type="input"/>
-        </button>}
+        <div>
+          {!showCalendar && 
+          <button 
+            disabled={!validateAssignmentInput(assignmentInput)}
+            onClick={() => setCalendarVisibility(!showCalendar)}
+            className={styles.inputButton}
+          >
+            {dateInput ? format(dateInput, 'PP'): "Due Date"} <AiOutlineCalendar size={20} type="input"/>
+          </button>}
 
-        <DayPicker className={styles.DayPicker}
-          mode="single"
-          selected={dateInput}
-          onSelect={setDateInput}
-        />
-
-        <button disabled={!dateInput && !validateAssignmentInput(assignmentInput)} type="submit">
+          {showCalendar && 
+          <DayPicker className={styles.DayPicker}
+            mode="single"
+            selected={dateInput}
+            onSelect={setDateInput}
+            footer={footer}
+          />}
+        </div>
+          
+        <button disabled={!dateInput || !validateAssignmentInput(assignmentInput)} 
+                type="submit"
+                className={styles.inputButton}>
           Create <AiOutlinePlusCircle size={20} />
         </button>
 

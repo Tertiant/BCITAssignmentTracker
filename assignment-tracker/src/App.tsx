@@ -3,9 +3,11 @@ import { Assignments } from "./components/Assignments";
 import { useState } from "react";
 import { IAssignment } from "./interfaces/IAssignment";
 
+
 function App() {
 
   const [assignments, setAssignments] = useState<IAssignment[]>([]);
+  
 
   return (
     <>
